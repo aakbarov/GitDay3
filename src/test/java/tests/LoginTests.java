@@ -24,12 +24,14 @@ public class LoginTests {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+    
     @Test
     public void loginTest1(){
         driver.get("http://secure.smartbearsoftware.com/samples/testcomplete12/weborders/login.aspx");
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
         driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test"+ Keys.ENTER);
-        Assert.assertEquals(driver.getTitle(), "Web Orders");
+        String title = driver.getTitle();
+        Assert.assertEquals(title, "Web Orders");
     }
 
     @Test
@@ -38,7 +40,8 @@ public class LoginTests {
         driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
         driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test"+ Keys.ENTER);
         driver.findElement(By.id("ctl00_logout")).click();
-        Assert.assertEquals(driver.getTitle(), "Web Orders Login");
+        String title = driver.getTitle();
+        Assert.assertEquals(title, "Web Orders Login");
     }
 
     @AfterMethod
